@@ -1,61 +1,27 @@
-const operandAElement = document.querySelector('#operandA');
-const operandBElement = document.querySelector('#operandB');
-const resultElement = document.querySelector('#result');
+const logElement = document.getElementById('log');
 
-document.getElementById('sumBtn').addEventListener('click', onSumBtnClick);
-document.getElementById('subBtn').addEventListener('click', onSubBtnClick);
+document.querySelector('input').addEventListener(
+    'change',
+    () => {
+        console.log('change on input');
+    },
+    false
+);
+document.querySelector('#container').addEventListener(
+    'change',
+    () => {
+        console.log('change on container bubling');
+    },
+    false
+);
 
-function onSumBtnClick() {
-    calculateSum();
-    clear();
-    focus();
-}
+document.getElementById('container').addEventListener(
+    'change',
+    e => {
+        // e.stopPropagation();
+        console.log('change on container');
 
-function onSubBtnClick() {
-    calculateSub();
-    clear();
-    focus();
-}
-
-function calculateSub() {
-    const operands = getOperands(); // {a: num, b:num}
-
-    const result = getSub(operands.a, operands.b);
-
-    showResult(operands, result, '-');
-}
-
-function calculateSum() {
-    const operands = getOperands(); // {a: num, b:num}
-
-    const result = getSum(operands.a, operands.b);
-
-    showResult(operands, result, '+');
-}
-
-function getOperands() {
-    return {
-        a: +operandAElement.value,
-        b: +operandBElement.value
-    };
-}
-
-function getSum(a, b) {
-    return a + b;
-}
-function getSub(a, b) {
-    return a - b;
-}
-
-function showResult(operands, result, operator) {
-    resultElement.innerHTML = `${operands.a} ${operator} ${operands.b} = ${result}`;
-}
-
-function clear() {
-    operandAElement.value = '';
-    operandBElement.value = '';
-}
-
-function focus() {
-    operandAElement.focus();
-}
+        logElement.innerHTML += `<li>${e.target.name} => ${e.target.value}</li>`;
+    },
+    true
+);

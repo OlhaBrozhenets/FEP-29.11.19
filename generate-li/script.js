@@ -1,13 +1,31 @@
+const ENTER_KEY_CODE = 13;
+
 const listElement = document.getElementById('list');
 const countInput = document.getElementById('count');
 const errorMessage = document.getElementById('errorMessage');
+const liTemplate = document.getElementById('liTemplate').innerHTML;
 
-document.getElementById('addBtn').addEventListener('click', onAddButtonClick);
-document.getElementById('addFiveBtn').addEventListener('click', () => {
+// document
+//     .getElementById('countForm')
+//     .addEventListener('submit', onCountFormSubmit);
+
+document.getElementById('addBtn').addEventListener('click', onCountFormSubmit);
+countInput.addEventListener('keydown', e => {
+    if (e.keyCode === ENTER_KEY_CODE) {
+        onCountFormSubmit(e);
+    }
+});
+
+document.getElementById('addFiveBtn').addEventListener('click', e => {
+    console.log('click', e);
+
     generateNewList(5);
 });
 
-function onAddButtonClick() {
+function onCountFormSubmit(e) {
+    e.preventDefault();
+    console.log('submit', e);
+
     clear();
     const count = getCount();
 
@@ -51,5 +69,7 @@ function generateNewList(count) {
 }
 
 function generateLi(index) {
-    return `<li>${index + 1}</li>`;
+    return liTemplate
+        .replace('{{index}}', index + 1)
+        .replace('{{name}}', 'Hello');
 }

@@ -9,9 +9,13 @@
     </head>
     <body>
         <ul id="list"></ul>
-        <input type="text" id="count" />
-        <button id="addBtn">Add</button>
-        <button id="addFiveBtn">Add 5</button>
+        <input type="text" name="count" id="count" />
+        <button type="submit" id="addBtn">Add</button>
+        <button type="button" id="addFiveBtn">Add 5</button>
         <div id="errorMessage" hidden>Count is invalid</div>
+
+        <div type="text/template" id="liTemplate" hidden>
+            <li>{{index}}</li>
+        </div>
     </body>
 </html>
