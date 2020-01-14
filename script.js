@@ -1,27 +1,24 @@
 const logElement = document.getElementById('log');
 
-document.querySelector('input').addEventListener(
-    'change',
-    () => {
-        console.log('change on input');
-    },
-    false
-);
-document.querySelector('#container').addEventListener(
-    'change',
-    () => {
-        console.log('change on container bubling');
-    },
-    false
-);
+document.getElementById('sendBtn').addEventListener('click', onBtnClick);
 
-document.getElementById('container').addEventListener(
-    'change',
-    e => {
-        // e.stopPropagation();
-        console.log('change on container');
+function onBtnClick(e) {
+    e.target.classList.add('loading');
 
-        logElement.innerHTML += `<li>${e.target.name} => ${e.target.value}</li>`;
-    },
-    true
-);
+    setTimeout(() => {
+        e.target.classList.remove('loading');
+    }, 3000);
+}
+
+document
+    .querySelector('#container')
+    .addEventListener('click', onContainerClick);
+
+function onContainerClick(e) {
+    if (this !== e.target) {
+        e.target.remove();
+    } else {
+        console.log('Container');
+    }
+    // console.log('change on container bubling', this, e.target);
+}

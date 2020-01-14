@@ -12,9 +12,16 @@ function onAddTaskFormSubmit(event) {
     submitForm();
 }
 
-function onTaskListClick(event) {
-    if (event.target.classList.contains('task-item')) {
-        toggleTaskState(event.target);
+function onTaskListClick(e) {
+    const classList = e.target.classList;
+
+    switch (true) {
+        case classList.contains('task-item'):
+            toggleTaskState(e.target);
+            break;
+        case classList.contains('delete-btn'):
+            deleteTask(e.target.parentNode);
+            break;
     }
 }
 
@@ -32,6 +39,10 @@ function addTask(task) {
 
     const newTaskEl = htmlToElement(html);
     taskList.appendChild(newTaskEl);
+}
+
+function deleteTask(el) {
+    el.remove();
 }
 
 function resetForm() {

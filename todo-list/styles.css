@@ -14,3 +14,7 @@
 .task-item.done {
     background-color: lightgreen;
 }
+
+.delete-btn {
+    float: right;
+}
