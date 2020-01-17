@@ -1,24 +1,33 @@
-const logElement = document.getElementById('log');
+// function createCounter() {
+//     let counts = 0;
 
-document.getElementById('sendBtn').addEventListener('click', onBtnClick);
+//     return {
+//         count: () => ++counts,
+//         set: value => (counts = value),
+//         get: () => counts,
+//         reset: () => (counts = 0)
+//     };
+// }
 
-function onBtnClick(e) {
-    e.target.classList.add('loading');
+// const counter = createCounter();
 
-    setTimeout(() => {
-        e.target.classList.remove('loading');
-    }, 3000);
+// console.log(counter.count());
+// console.log(counter.count());
+// console.log(counter.set(10));
+// console.log(counter.get());
+// console.log(counter.count());
+// console.log(counter.reset());
+// console.log(counter.get());
+
+'use strict';
+
+function say(greeting) {
+    console.log(greeting + this.name);
 }
 
-document
-    .querySelector('#container')
-    .addEventListener('click', onContainerClick);
+const person = {
+    name: 'Alex'
+};
 
-function onContainerClick(e) {
-    if (this !== e.target) {
-        e.target.remove();
-    } else {
-        console.log('Container');
-    }
-    // console.log('change on container bubling', this, e.target);
-}
+say.call(person, 'Hello');
+say.apply(person, ['Hello']);
