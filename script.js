@@ -1,33 +1,17 @@
-// function createCounter() {
-//     let counts = 0;
-
-//     return {
-//         count: () => ++counts,
-//         set: value => (counts = value),
-//         get: () => counts,
-//         reset: () => (counts = 0)
-//     };
-// }
-
-// const counter = createCounter();
-
-// console.log(counter.count());
-// console.log(counter.count());
-// console.log(counter.set(10));
-// console.log(counter.get());
-// console.log(counter.count());
-// console.log(counter.reset());
-// console.log(counter.get());
-
-'use strict';
-
-function say(greeting) {
-    console.log(greeting + this.name);
+function Person(name, surname) {
+    this.surname = surname;
+    this._name = name;
 }
-
-const person = {
-    name: 'Alex'
+Person.prototype.getName = () => {
+    return 'Mr. ' + this._name;
 };
 
-say.call(person, 'Hello');
-say.apply(person, ['Hello']);
+Person.prototype.setName = neWname => {
+    console.log('Blocked');
+};
+
+const bob = new Person('Bob', 'Smith');
+
+// bob.name = 'John';
+
+console.log(`${bob.name} ${bob.surname}`);
