@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="../common/css/dark-theme.css" />
         <link rel="stylesheet" href="./styles.css" />
         <script src="./app.js" async></script>
+
         <title>Todo list</title>
     </head>
     <body>
@@ -31,9 +32,8 @@
         </div>
 
         <script type="text/template" id="taskItemTemplate">
-            <div class="task-item u-full-width {{completeClass}}" data-id="{{id}}">
+            <div class="task-item u-full-width {{completeClass}}">
                 {{title}}
-                <span class="delete-btn">X</span>
             </div>
         </script>
     </body>
