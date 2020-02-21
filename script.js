@@ -1,11 +1,9 @@
-let serverData;
+$('ul')
+    .on('click', 'li', function(e) {
+        const $el = $(e.target);
+        $el.hide();
 
-fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(response => {
-        console.log('first');
-        return response.json();
+        setTimeout(() => $el.show(), 2000);
     })
-    .then(data => {
-        serverData = data;
-        console.log('second', msg);
-    });
+    .css('color', 'red')
+    .css('backgroundColor', 'blue');

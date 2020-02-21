@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Users</title>
+        <link rel="stylesheet" href="../common/css/normalize.css" />
+        <link rel="stylesheet" href="../common/css/skeleton.css" />
+        <link rel="stylesheet" href="../common/css/dark-theme.css" />
+        <link rel="stylesheet" href="./styles.css" />
+        <script src="./app.js" async></script>
+    </head>
+    <body>
+        <form id="newUserForm" class="form">
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="usersList"></tbody>
+                <tfoot>
+                    <tr>
+                        <td>
+                            <input
+                                type="hidden"
+                                name="id"
+                                id="idInput"
+                                class="form-input"
+                            />
+                            <input
+                                type="text"
+                                name="name"
+                                id="nameInput"
+                                class="form-input"
+                            />
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                name="surname"
+                                id="surnameInput"
+                                class="form-input"
+                            />
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                name="email"
+                                id="emailInput"
+                                class="form-input"
+                            />
+                        </td>
+                        <td><button id="saveUserBtn">Save</button></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </form>
+        <script type="text/template" id="userTemplate">
+            <tr class="user-item" data-id="{{id}}">
+                <td>{{name}}</td>
+                <td>{{surname}}</td>
+                <td>{{email}}</td>
+                <td>
+                    <button type="button" class="delete-btn">Delete</button>
+                    <button type="button" class="edit-btn">Edit</button>
+                </td>
+            </tr>
+        </script>
+    </body>
+</html>
