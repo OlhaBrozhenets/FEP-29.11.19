@@ -6,14 +6,21 @@ const $addTaskForm = $('#addTaskForm');
 const $taskNameInput = $('#taskNameInput');
 const $taskList = $('#taskList');
 const taskItemTemplate = $('#taskItemTemplate').html();
-
+let dialog;
 let todos = [];
-$addTaskForm.on('submit', onAddTaskFormSubmit);
+// $addTaskForm.on('submit', onAddTaskFormSubmit);
 $taskList.on('click', '.task-item', onTaskItemClick);
 $taskList.on('click', '.delete-btn', onDeleteBtnClick);
 
+$('#addTodoBtn').on('click', onAddTodoBtnClick);
+
 init();
 
+function onAddTodoBtnClick() {
+    console.log('clicked');
+
+    dialog.dialog('open');
+}
 function onTaskItemClick(e) {
     toggleTodo($(e.target).data('id'));
 }
@@ -34,7 +41,29 @@ function onAddTaskFormSubmit(event) {
 }
 
 function init() {
+    initDialog();
     getTodos();
+}
+
+function initDialog() {
+    dialog = $('#dialog-form').dialog({
+        autoOpen: false,
+        height: 200,
+        width: 350,
+        modal: true,
+        buttons: {
+            Create: function() {
+                submitForm();
+                dialog.dialog('close');
+            },
+            Cancel: function() {
+                dialog.dialog('close');
+            }
+        },
+        close: function() {
+            $taskNameInput.val('');
+        }
+    });
 }
 
 function getTodos() {
@@ -73,6 +102,7 @@ function deleteTodo(id) {
 function submitForm() {
     const todo = {
         id: Date.now(),
+        title: $taskNameInput.val(),
         isDone: false
     };
 
