@@ -1,9 +1,26 @@
-$('ul')
-    .on('click', 'li', function(e) {
-        const $el = $(e.target);
-        $el.hide();
+const users = [
+    {
+        name: 'Alex'
+    },
+    {
+        name: 'John'
+    }
+];
 
-        setTimeout(() => $el.show(), 2000);
-    })
-    .css('color', 'red')
-    .css('backgroundColor', 'blue');
+function render(users) {
+    users.forEach(renderUser);
+}
+
+function renderUser(user) {
+    const id = Symbol.for('id');
+    user[id] = Math.random();
+
+    generateHTML(user);
+}
+
+function goroskop(user) {
+    const id = Symbol.for('id');
+    user[id] = Date.now();
+
+    getData(user);
+}
